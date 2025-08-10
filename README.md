@@ -1,5 +1,26 @@
 # Тест компетенции
 
+# Запуск
+
+### 1.1 Создать рабочую среду (если нет)
+
+```
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 1.2 Запустить рабочую среду (если уже создана)
+
+```
+source venv/bin/activate
+```
+
+### 2. Запустить main.py
+
+```
+python scripts/main.py
+```
 
 # Техническое задание
 
