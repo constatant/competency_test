@@ -1,93 +1,170 @@
-# competency-test
+# Тест компетенции
 
 
+# Техническое задание
 
-## Getting started
+### 1. Общая идея проекта
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Создается веб-сервис, в котором респонденты по индивидуальному коду проходят голосовой опрос о конкретном человеке, отвечая на 4 ключевых вопроса. Речь респондентов транскрибируется и затем обрабатывается нейросетью для формирования отчета по компетенциям оцениваемого человека. Результаты валидируются специалистами и доступны заказчику через личный кабинет.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+⸻
 
-## Add your files
+### 2. Целевые пользователи и интерфейсы
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+Роль Описание
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/constatant/competency-test.git
-git branch -M main
-git push -uf origin main
-```
+Респондент Получает код, проходит голосовой опрос, отвечает на 6 вопросов (2 разминочных + 4 основных). Имеет возможность один раз перезаписать каждый ответ.
 
-## Integrate with your tools
+Заказчик Вносит данные об оцениваемом человеке, назначает респондентов, получает итоговый отчет.
 
-- [ ] [Set up project integrations](https://gitlab.com/constatant/competency-test/-/settings/integrations)
+Валидатор (эксперт) Проверяет черновой отчет, сформированный нейросетью, и подтверждает его (при необходимости вносит правки).
 
-## Collaborate with your team
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+⸻
 
-## Test and Deploy
+### 3. Структура опроса
 
-Use the built-in continuous integration in GitLab.
+3.1 Разминочные вопросы:
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+ - Респондент выбирает одну из 3–5 знаменитостей (список фиксированный).
 
-***
+ - Голосом отвечает на два вопроса:
+ 1. В какой ситуации этот человек ведет себя хорошо?
+ 2. В какой ситуации этот человек ведет себя плохо?
 
-# Editing this README
+3.2 Основные вопросы:
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Оценивается конкретный человек (задан системой).
+ 1. В чем этот человек хорош?
+ 2. В чем этот человек плох?
+ 3. В каких ситуациях этот человек хорош?
+ 4. В каких ситуациях этот человек плох?
 
-## Suggestions for a good README
+⸻
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### 4. Описание пользовательского опыта
 
-## Name
-Choose a self-explaining name for your project.
+Интерфейс респондента:
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+ - Ввод уникального кода.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+ - Выбор знаменитости.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+ - Два разминочных вопроса с голосовым ответом (до 60 сек каждый).
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+ - Таймер 30 сек между вопросами.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+ - Переход к основным 4 вопросам (аналогично).
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+ - Возможность один раз перезаписать каждый голосовой ответ.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+ - После завершения — сообщение благодарности, завершение сессии.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Интерфейс заказчика:
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+ - Создание сессии оценки (ввод ФИО оцениваемого, e-mail респондентов).
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+ - Генерация и отправка индивидуальных кодов респондентам.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+ - Просмотр статуса прохождения опросов.
 
-## License
-For open source projects, say how it is licensed.
+ - Получение и скачивание подтвержденного отчета.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Интерфейс валидатора:
+ - Список завершенных сессий.
+
+ - Просмотр транскриптов ответов.
+
+ - Генерация отчета через нейросеть (DeepSeek).
+
+ - Редактирование, подтверждение, публикация отчета.
+
+⸻
+
+### 5. Ограничения и параметры
+
+Параметр Значение
+Время на ответ 60 секунд
+Таймер между вопросами 30 секунд
+Повтор записи 1 раз на вопрос
+Язык Русский
+Аудио Не сохраняется
+Транскрибация Сохраняется в базе данных
+Кол-во респондентов на 1 человека 10
+Список вопросов и знаменитостей Фиксированный
+Обязательность PII-защиты Да (см. ниже)
+
+
+⸻
+
+### 6. Интеграции
+
+6.1 Транскрибация
+ - Использовать Whisper от OpenAI для преобразования речи в текст.
+
+6.2 Генерация отчета
+ - Использовать DeepSeek или аналогичную LLM.
+ - Входные данные: транскрибированные тексты от 10 респондентов.
+ - Выход: текстовый черновик отчета (см. ниже структуру).
+
+⸻
+
+### 7. Структура итогового отчета (Draft → Confirmed)
+ 1. ФИО оцениваемого
+ 2. Краткое описание сильных сторон
+ 3. Краткое описание зон роста
+ 4. Четыре ключевые компетенции
+ - Компетенция 1 (сильная)
+ - Компетенция 2 (сильная)
+ - Компетенция 3 (западающая)
+ - Компетенция 4 (западающая)
+ 5. Цитаты / выдержки из ответов (если применимо)
+
+⸻
+
+### 8. Технические требования
+ - Frontend:
+ - React / Vue (предпочтительно)
+ - Микрофонная запись с визуальным индикатором
+ - Простые интерфейсы без лишней навигации
+ - Backend:
+ - Python (FastAPI / Django) или Node.js
+ - API для получения кода, начала сессии, загрузки аудио, транскрибации и отчетов
+ - Хранение данных в PostgreSQL или аналогичной СУБД
+ - AI-интеграция:
+ - Whisper для STT (Speech-to-Text)
+ - DeepSeek API или OpenAI GPT для анализа
+ - Хостинг:
+ - Поддержка HTTPS
+ - Бэкапы базы 1 раз в сутки
+ - Безопасность:
+ - Хранение PII только в зашифрованном виде (например, email респондентов)
+ - Защита от повторного прохождения по одному коду
+ - Аутентификация валидаторов и заказчиков
+
+⸻
+
+### 9. Этапы разработки (предложение)
+
+1. MVP-интерфейс респондента Ввод кода, запись, разминочные и основные вопросы, транскрибация 2 недели
+2. Интерфейс заказчика Создание сессии, управление кодами, просмотр отчетов 1 неделя
+3. Интерфейс валидатора Просмотр транскриптов, генерация, редактирование отчета 1 неделя
+4. Интеграция нейросетей Whisper + DeepSeek, API-интеграция 1 неделя
+5. Тестирование и доработка UI/UX финализация, багфиксы 1 неделя
+ИТОГО ~6 недель (без учета буферов) 
+
+
+⸻
+
+### 10. Возможные доработки в будущем
+ - Расширение языков
+ - Настраиваемый список вопросов
+ - Хранение и анализ аудио
+ - Автоматическая оценка эмоций / интонации
+ - Поддержка видеоответов
+
+⸻
+
+### 11. Примечания
+ - Проект предполагает работу с чувствительными данными. Необходима регистрация в качестве оператора ПДн при коммерческом запуске.
+ - Все транскрипты и отчеты — конфиденциальные. Доступ только по авторизации.
