@@ -12,8 +12,7 @@
   }
   if (regBtn){
     regBtn.addEventListener('click', function(){
-      const email = document.getElementById('email').value.trim();
-      msg.textContent = `Регистрация с email: ${email}`;
+      // navigation handled by link
     });
   }
 })();

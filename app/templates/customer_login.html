@@ -17,7 +17,7 @@
     </div>
     <div class="form-actions">
       <button type="submit" class="btn primary">Войти</button>
-      <button type="button" id="register-btn" class="btn secondary">Зарегистрироваться</button>
+      <a href="/customer/register" id="register-btn" class="btn secondary">Зарегистрироваться</a>
     </div>
     <p id="message" class="message" role="status" aria-live="polite"></p>
   </form>
@@ -27,3 +27,4 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/customer_login.js') }}" defer></script>
 {% endblock %}
+
