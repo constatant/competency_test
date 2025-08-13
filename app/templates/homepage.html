@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}CTest — Главная{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+{% endblock %}
+{% block content %}
+<section id="content" class="intro">
+  <p class="lead">Выберите роль, чтобы продолжить работу с сервисом.</p>
+</section>
+
+<section class="role-grid" aria-label="Выбор роли">
+  <article class="card role" data-role="customer" tabindex="0" aria-label="Заказчик">
+    <div class="card-body">
+      <div class="icon" aria-hidden="true">👤</div>
+      <h2 class="role-title">Я — заказчик</h2>
+      <p class="role-desc">Создать оценку, назначить респондентов, получить отчет.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn primary" href="/customer/login">Войти как заказчик</a>
+    </div>
+  </article>
+
+  <article class="card role" data-role="respondent" tabindex="0" aria-label="Респондент">
+    <div class="card-body">
+      <div class="icon" aria-hidden="true">🎧</div>
+      <h2 class="role-title">Я — респондент</h2>
+      <p class="role-desc">Пройти голосовой опрос по индивидуальному коду.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn secondary" href="/respondent/start">У меня есть код</a>
+    </div>
+  </article>
+</section>
+
+<section class="info">
+  <p class="description">
+    Этот сервис предназначен для проведения анонимного голосового опроса о компетенциях человека.
+    Респонденты отвечают на фиксированный набор вопросов, их ответы транскрибируются и анализируются с помощью нейросетей.
+    Итоговый отчет проверяется экспертами и передается заказчику.
+  </p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/homepage.js') }}" defer></script>
+{% endblock %}
