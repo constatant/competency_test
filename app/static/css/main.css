@@ -109,9 +109,9 @@ main.wrapper{ flex:1 }
   color:var(--text); font-family:inherit;
 }
 .btn:active{ transform: translateY(1px) }
-.btn.primary{ background: var(--primary); color:white }
+.btn.primary{ background: var(--primary); color:white; font-size: 1rem}
 .btn.primary:hover{ background: var(--primary-600) }
-.btn.secondary{ background: transparent; color: var(--primary); border-color: var(--primary); border:1px solid var(--primary) }
+.btn.secondary{ background: transparent; color: var(--primary); border-color: var(--primary); border:1px solid var(--primary); font-size: 1rem }
 .btn.secondary:hover{ background: rgba(54,92,255,0.08) }
 
 /* Info / description */
