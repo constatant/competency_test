@@ -24,26 +24,6 @@
 </section>
 {% endblock %}
 
-<!-- {% block scripts %}
-<script>
-// Небольшая клиентская логика (демо). В реальном проекте замените на запросы к API.
-document.getElementById('auth-form').addEventListener('submit', function(e){
-  e.preventDefault();
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-  document.getElementById('message').textContent = `Вход с email: ${email}`;
-  // fetch('/api/auth/login', { method:'POST', body: new FormData(this) })
-  //   .then(r => r.json()).then(data => ...)
-});
-
-document.getElementById('register-btn').addEventListener('click', function(){
-  const email = document.getElementById('email').value.trim();
-  document.getElementById('message').textContent = `Регистрация с email: ${email}`;
-  // fetch('/api/auth/register', { method:'POST', body: new FormData(document.getElementById('auth-form')) })
-});
-</script>
-{% endblock %} -->
-
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/customer_login.js') }}" defer></script>
 {% endblock %}
