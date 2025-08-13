@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}CTest — Регистрация{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/customer_login.css') }}">
+{% endblock %}
+{% block content %}
+<section id="content" class="auth-container">
+  <h2 class="page-title">Регистрация</h2>
+  <form id="register-form" class="form-card" method="post" action="/api/auth/register">
+    <div class="register-columns">
+      <div class="col">
+        <div class="form-group">
+          <label for="last_name">Фамилия</label>
+          <input type="text" id="last_name" name="last_name" required>
+        </div>
+        <div class="form-group">
+          <label for="first_name">Имя</label>
+          <input type="text" id="first_name" name="first_name" required>
+        </div>
+        <div class="form-group">
+          <label for="birth_year">Год рождения</label>
+          <input type="number" id="birth_year" name="birth_year" min="1900" max="2099" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <input type="password" id="password" name="password" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Подтверждение пароля</label>
+          <input type="password" id="confirm_password" name="confirm_password" required minlength="6">
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn primary">Зарегистрироваться</button>
+    </div>
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+  </form>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+

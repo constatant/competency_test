@@ -17,3 +17,7 @@ def homepage():
 @application.route('/customer/login')
 def customer_login():
     return render_template('customer_login.html')
+
+@application.route('/customer/register')
+def customer_register():
+    return render_template('customer_register.html')

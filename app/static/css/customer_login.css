@@ -1,0 +1,32 @@
+/* customer_login.css (auth page styles) */
+
+/* Increase size of auth form */
+.auth-container {
+  max-width: 640px;
+}
+
+.form-card {
+  padding: 24px;
+}
+
+.form-card input {
+  padding: 14px;
+  font-size: 16px;
+}
+
+/* Two-column layout for registration */
+.register-columns {
+  display: flex;
+  gap: 24px;
+}
+
+.register-columns .col {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .register-columns {
+    flex-direction: column;
+  }
+}
+
