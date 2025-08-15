@@ -4,7 +4,7 @@
   --bg-elev: #111833;
   --text: #e7ecff;
   --muted:#b6c2e1;
-  --primary:#7aa2ff;
+  --primary:#365cff;
   --primary-600:#5a88ff;
   --accent:#88f0c2;
   --ring: rgba(122,162,255,0.6);
@@ -17,9 +17,9 @@
 @media (prefers-color-scheme: light){
   :root{
     --bg:#f7f9ff; --bg-elev:#ffffff; --text:#151b2f; --muted:#58607a;
-    --primary:#365cff; --primary-600:#2745db; --accent:#0f9f6d;
+    --primary:#2745db; --primary-600:#365cff; --accent:#0f9f6d;
     --card: rgba(18,21,44,0.06); --card-hover: rgba(18,21,44,0.12);
-    --ring: rgba(54,92,255,0.35);
+    --ring: rgba(39,69,219,0.35);
   }
 }
 
@@ -66,7 +66,7 @@ main.wrapper{ flex:1 }
 .nav-links{ display:flex; justify-content:flex-end; gap:18px }
 .nav-links a{ color:var(--text); text-decoration:none; font-weight:600; opacity:.9 }
 .nav-links a:hover{ color:var(--primary) }
-.nav-toggle{ display:none; background:transparent; border:0; color:var(--text); font-size:20px; }
+.nav-toggle{ display:none; background:transparent; border:0; color:var(--text); font-size:20px; text-align:center; }
 
 @media (max-width: 760px){
   .header-inner{ grid-template-columns: auto 1fr auto }
@@ -106,7 +106,7 @@ main.wrapper{ flex:1 }
   padding:12px 16px; border-radius:14px; font-weight:600;
   border:1px solid transparent; transition: transform .06s ease, background .15s ease, border-color .15s ease;
   user-select:none; position:relative; overflow:hidden;
-  color:var(--text); font-family:inherit;
+  color:var(--text); font-family:inherit; text-align:center;
 }
 .btn:active{ transform: translateY(1px) }
 .btn.primary{ background: var(--primary); color:white; font-size: 1rem}

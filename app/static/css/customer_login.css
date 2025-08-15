@@ -30,3 +30,18 @@
   }
 }
 
+/* Center the submit button on the registration page */
+#register-form .form-actions {
+  justify-content: center;
+}
+
+/* Stack login buttons vertically and make them equal width */
+#auth-form .form-actions {
+  flex-direction: column;
+}
+
+#auth-form .form-actions .btn {
+  width: 100%;
+  text-align: center;
+}
+
