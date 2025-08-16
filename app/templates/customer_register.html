@@ -6,7 +6,7 @@
 {% block content %}
 <section id="content" class="auth-container">
   <h2 class="page-title">Регистрация</h2>
-  <form id="register-form" class="form-card" method="post" action="/api/auth/register">
+  <form id="register-form" class="form-card" method="post">
     <div class="register-columns">
       <div class="col">
         <div class="form-group">
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
           <label for="birth_year">Год рождения</label>
-          <input type="number" id="birth_year" name="birth_year" min="1900" max="2099" required>
+          <input type="number" id="birth_year" name="birth_year" required>
         </div>
       </div>
       <div class="col">
@@ -40,7 +40,9 @@
     <div class="form-actions">
       <button type="submit" class="btn primary">Зарегистрироваться</button>
     </div>
-    <p id="message" class="message" role="status" aria-live="polite"></p>
+    {% if error %}
+    <p id="message" class="error" role="status" aria-live="polite"> {{ error }} </p>
+    {% endif %}
   </form>
 </section>
 {% endblock %}

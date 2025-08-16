@@ -4,7 +4,7 @@
   --bg-elev: #111833;
   --text: #e7ecff;
   --muted:#b6c2e1;
-  --primary:#365cff;
+  --primary:#3950b6;
   --primary-600:#5a88ff;
   --accent:#88f0c2;
   --ring: rgba(122,162,255,0.6);
@@ -12,6 +12,7 @@
   --card-hover: rgba(255,255,255,0.12);
   --radius: 16px;
   --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --error: #df2e2e;
 }
 
 @media (prefers-color-scheme: light){
@@ -111,8 +112,8 @@ main.wrapper{ flex:1 }
 .btn:active{ transform: translateY(1px) }
 .btn.primary{ background: var(--primary); color:white; font-size: 1rem}
 .btn.primary:hover{ background: var(--primary-600) }
-.btn.secondary{ background: transparent; color: var(--primary); border-color: var(--primary); border:1px solid var(--primary); font-size: 1rem }
-.btn.secondary:hover{ background: rgba(54,92,255,0.08) }
+.btn.secondary{ background: transparent; color: var(--primary-600); border-color: var(--primary); border:1px solid var(--primary); font-size: 1rem }
+.btn.secondary:hover{ background: rgba(37, 74, 255, 0.08) }
 
 /* Info / description */
 .info{ margin-top:22px }
@@ -130,7 +131,7 @@ main.wrapper{ flex:1 }
 .auth-container{
   max-width: 460px; margin: 0 auto; width:100%;
 }
-.page-title{ margin: 0 0 12px 0; }
+.page-title{ text-align: center; }
 .form-card{
   background: var(--card); border:1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius); box-shadow: var(--shadow); padding:18px;
@@ -144,6 +145,7 @@ input{
 }
 .form-actions{ display:flex; gap:10px }
 .message{ margin-top:10px; text-align:center; color:var(--muted) }
+.error{ margin-top:2rem; text-align:center; color:var(--error) }
 
 /* Footer — единая нижняя плашка */
 .site-footer{
