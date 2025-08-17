@@ -26,6 +26,16 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS `contests` (
                   PRIMARY KEY(`id`));''')
 conn.commit()
 
+cursor.execute('''CREATE TABLE IF NOT EXISTS `customers` (
+                  `id` int NOT NULL AUTO_INCREMENT,
+                  `last_name` varchar(255) NOT NULL,
+                  `first_name` varchar(255) NOT NULL,
+                  `birth_year` int NOT NULL,
+                  `email` varchar(255) NOT NULL UNIQUE,
+                  `password` varchar(255) NOT NULL,
+                  PRIMARY KEY(`id`));''')
+conn.commit()
+
 cursor.close()
 conn.close()
 
