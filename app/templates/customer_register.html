@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}CTest — Регистрация{% endblock %}
 {% block head_extra %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/customer_login.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/customer_register.css') }}">
 {% endblock %}
 {% block content %}
 <section id="content" class="auth-container">
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
           <label for="birth_year">Год рождения</label>
-          <input type="number" id="birth_year" name="birth_year" required>
+          <input type="number" id="birth_year" name="birth_year" min="1900" max="2099" required>
         </div>
       </div>
       <div class="col">
@@ -40,8 +40,13 @@
     <div class="form-actions">
       <button type="submit" class="btn primary">Зарегистрироваться</button>
     </div>
+    <div class="message">
+      <a href="/customer/login" class="link">У вас уже есть аккаунт?</a>
+    </div>
     {% if error %}
-    <p id="message" class="error" role="status" aria-live="polite"> {{ error }} </p>
+    <div class="message">
+      <div class="error" role="status" aria-live="polite"> {{ error }} </div>
+    </div>
     {% endif %}
   </form>
 </section>

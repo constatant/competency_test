@@ -1,7 +1,10 @@
 #!/usr/bin/python
 
 from app import application
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
+from re import match
+from werkzeug.security import check_password_hash, generate_password_hash
+from app import mysql
 
 @application.route('/test')
 def testpage():
@@ -29,5 +32,35 @@ def customer_register():
         if password != confirm_password:
             return render_template('customer_register.html', error='Не удалось подтвердить пароль')
 
+        hashed_password = generate_password_hash(password)
+        
+        if max(len(last_name),
+               len(first_name),
+               len(email),
+               len(password)) > 255:
+            return render_template('customer_register.html', error='Одно из полей содержит слишком много символов')
+        
+        conn   = mysql.connect()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+        found_user = cursor.fetchone()
+
+        if found_user:
+            cursor.close()
+            conn.close()
+            return render_template('customer_register.html', error='Пользователь с данной почтой уже существует')
+        
+        cursor.execute(
+            "INSERT INTO users (last_name, first_name, birth_year, email, password) VALUES (%s, %s, %s, %s, %s)",
+            (last_name, first_name, birth_year, email, hashed_password)
+        )
+
+        conn.commit()
+
+        cursor.close()
+        conn.close()
+
+        return redirect(url_for('customer_login'))
 
     return render_template('customer_register.html')

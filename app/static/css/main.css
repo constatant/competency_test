@@ -144,8 +144,14 @@ input{
   background: rgba(255,255,255,0.05); color:var(--text);
 }
 .form-actions{ display:flex; gap:10px }
-.message{ margin-top:10px; text-align:center; color:var(--muted) }
-.error{ margin-top:2rem; text-align:center; color:var(--error) }
+.message { 
+  margin-top:10px;
+  display: flex;
+  justify-content: center; /* по горизонтали */
+  align-items: center;
+}
+.error { color:var(--error) }
+.link { color:var(--muted) }
 
 /* Footer — единая нижняя плашка */
 .site-footer{

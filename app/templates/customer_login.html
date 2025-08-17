@@ -19,7 +19,9 @@
       <button type="submit" class="btn primary">Войти</button>
       <a href="/customer/register" id="register-btn" class="btn secondary">Зарегистрироваться</a>
     </div>
-    <p id="message" class="message" role="status" aria-live="polite"></p>
+    {% if error %}
+    <p id="message" class="error" role="status" aria-live="polite"> {{ error }} </p>
+    {% endif %}
   </form>
 </section>
 {% endblock %}
