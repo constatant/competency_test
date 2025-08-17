@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from app import application
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from re import match
 from werkzeug.security import check_password_hash, generate_password_hash
 from app import mysql
@@ -17,6 +17,32 @@ def homepage():
 @application.route('/customer/login')
 def customer_login():
     return render_template('customer_login.html')
+
+
+@application.route('/api/auth/login', methods=['POST'])
+def api_auth_login():
+    email    = request.form['email']
+    password = request.form['password']
+
+    conn   = mysql.connect()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT id, password FROM users WHERE email = %s", (email,))
+    user = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    if user and check_password_hash(user[1], password):
+        session['user_id'] = user[0]
+        return redirect(url_for('customer_profile'))
+
+    return render_template('customer_login.html', error='Неверный логин или пароль')
+
+
+@application.route('/customer/profile')
+def customer_profile():
+    return render_template('customer_profile.html')
 
 @application.route('/customer/register', methods=['GET', 'POST'])
 def customer_register():
