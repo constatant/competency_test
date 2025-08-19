@@ -3,6 +3,48 @@
 {% block content %}
 <section id="content">
   <h2 class="page-title">Личный кабинет</h2>
-  <p>Добро пожаловать!</p>
+
+  {% if message == 'emails_sent' %}
+    <p>Письма отправлены</p>
+  {% elif message == 'report_prepared' %}
+    <p>Отчет подготовлен</p>
+  {% endif %}
+
+  <h3>Респонденты</h3>
+  <form method="post" action="{{ url_for('api_respondents_add') }}">
+    <input type="email" name="email" placeholder="Email" required>
+    <button type="submit">Добавить респондента</button>
+  </form>
+
+  <form method="post" action="{{ url_for('api_respondents_send') }}">
+    <button type="submit">Разослать письма</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr><th>Email</th><th>Код</th><th>Статус</th></tr>
+    </thead>
+    <tbody>
+      {% for r in respondents %}
+      <tr>
+        <td>{{ r.email }}</td>
+        <td>
+          <input type="text" id="code-{{ r.id }}" value="{{ r.code }}" readonly>
+          <button type="button" class="copy-btn" data-target="code-{{ r.id }}">Копировать</button>
+        </td>
+        <td>{{ 'Пройден' if r.status == 'completed' else 'Ожидает' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if has_completed and report_status != 'prepared' %}
+  <form method="post" action="{{ url_for('api_report_prepare') }}">
+    <button type="submit">Подготовить отчет</button>
+  </form>
+  {% elif report_status == 'prepared' %}
+  <p>Отчет подготовлен</p>
+  {% endif %}
+
 </section>
 {% endblock %}

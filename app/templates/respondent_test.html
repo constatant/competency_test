@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Тест{% endblock %}
+{% block content %}
+<section id="content">
+  {% if completed %}
+    <p>Спасибо! Тест пройден.</p>
+  {% else %}
+    <form method="post" action="{{ url_for('respondent_complete') }}">
+      <button type="submit">Пройти тест</button>
+    </form>
+  {% endif %}
+</section>
+{% endblock %}
