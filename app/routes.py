@@ -67,6 +67,13 @@ def api_auth_login():
     return render_template('customer_login.html', error='Неверный логин или пароль')
 
 
+@application.route('/api/auth/logout', methods=['POST'])
+def api_auth_logout():
+    """Clear the user session and redirect to the homepage."""
+    session.pop('user_id', None)
+    return redirect(url_for('homepage'))
+
+
 @application.route('/customer/profile')
 def customer_profile():
     if 'user_id' not in session:

@@ -4,6 +4,10 @@
 <section id="content">
   <h2 class="page-title">Личный кабинет</h2>
 
+  <form method="post" action="{{ url_for('api_auth_logout') }}">
+    <button type="submit">Выйти</button>
+  </form>
+
   {% if message == 'emails_sent' %}
     <p>Письма отправлены</p>
   {% elif message == 'report_prepared' %}
