@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Введите код{% endblock %}
+{% block content %}
+<section id="content">
+  <h2 class="page-title">Респондент</h2>
+  <form method="post">
+    <label>Уникальный код</label>
+    <input type="text" name="code" required>
+    <button type="submit">Продолжить</button>
+  </form>
+  {% if error %}<p>{{ error }}</p>{% endif %}
+</section>
+{% endblock %}

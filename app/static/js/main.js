@@ -9,3 +9,14 @@
     });
   }
 })();
+
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('copy-btn')) {
+    const id = e.target.getAttribute('data-target');
+    const input = document.getElementById(id);
+    if (input) {
+      input.select();
+      navigator.clipboard.writeText(input.value);
+    }
+  }
+});
